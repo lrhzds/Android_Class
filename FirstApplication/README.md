@@ -16,6 +16,7 @@
   5. **git push origin master**   上传到远程仓库
   
   6. 最终运行效果如图：
+  
   ![image](pic/img_2.png)
 
 
