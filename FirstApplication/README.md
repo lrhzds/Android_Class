@@ -30,6 +30,8 @@
     app:layout_constraintTop_toTopOf="parent" />
 ```
 
-- 最终运行成功结果
-![image](pic/img.png)
+- 最终运行成功结果截图：
+  ![image](pic/img.png)
+
+  
 
