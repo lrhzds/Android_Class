@@ -10,12 +10,9 @@
   3. **.ignore**  现在不需要再自己编写了
 
   4. **git commit -m "commit info"**  提交信息
-
-![image](pic/img_1.png)
-
+  ![image](pic/img_1.png)
   5. **git push origin master**  上传到远程仓库
-
-![image](pic/img_2.png)
+  ![image](pic/img_2.png)
 
   6. TextView代码：
 
