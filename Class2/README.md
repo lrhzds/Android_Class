@@ -92,7 +92,7 @@
 
 1. 
 > 此题代码在[layout_constraint](layout_constraint)模块中
-- 思路：把组件的样式定义出来后，直接通过组件的拖拽还有设置组件的约束，就可以完成
+- 思路：把控件的样式定义出来后，直接通过控件的拖拽还有设置组件的约束，就可以完成
 
 - 部分关键代码示例：
 
@@ -128,5 +128,45 @@
 
 2. 
 > 此题代码在[layout_constraint2](layout_constraint2)模块中
+- 思路，将图片导入drawable中，通过 `ImageView` 进行调用，One Way那边用到是 `Swith` 控件
+
+- 部分关键代码示例:
+
+  ```xml
+  <ImageView
+      android:layout_width="14dp"
+  
+      android:layout_height="44dp"
+      android:layout_marginEnd="32dp"
+      android:layout_marginBottom="76dp"
+      android:src="@drawable/rocket_icon"
+      app:layout_constraintBottom_toTopOf="@+id/button"
+      app:layout_constraintEnd_toStartOf="@+id/imageView4"
+      app:layout_constraintHorizontal_bias="0.991"
+      app:layout_constraintStart_toStartOf="parent" />
+  
+  <Button
+      android:id="@+id/button"
+      android:layout_width="388dp"
+      android:layout_height="47dp"
+      android:layout_marginBottom="16dp"
+      android:backgroundTint="@color/green"
+      android:text="DEPART"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.478"
+      app:layout_constraintStart_toStartOf="parent" />
+  
+  <Switch
+      android:id="@+id/switch1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="@+id/textView7"
+      app:layout_constraintEnd_toEndOf="@+id/textView7"
+      app:layout_constraintHorizontal_bias="0.909"
+      app:layout_constraintStart_toStartOf="@+id/textView7"
+      app:layout_constraintTop_toTopOf="@+id/textView7" />
+  ```
+
 - 约束布局第二题效果图如下：
 <img src="pic\img_3.png" width="200px"/>
