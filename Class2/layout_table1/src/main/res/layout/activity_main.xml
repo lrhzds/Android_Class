@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/eblack"
+    android:shrinkColumns="1"
+    android:stretchColumns="1">
+
+    <TextView
+        android:background="@color/gray"
+        android:text="Hello  TableLayOut"
+        android:textColor="@color/white"
+        android:textSize="24dp" />
+
+    <TableRow>
+
+        <TextView
+            android:paddingLeft="20dp"
+            android:text="Open..."
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+        <TextView
+            android:gravity="right"
+            android:text="Ctrl-O"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:paddingLeft="20dp"
+            android:text="Save..."
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+        <TextView
+            android:gravity="right"
+            android:text="Ctrl-S"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:paddingLeft="20dp"
+            android:text="Save As..."
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+        <TextView
+            android:gravity="right"
+            android:text="Ctrl-Shift-S"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </TableRow>
+
+    <View
+        android:layout_height="3dp"
+        android:background="@color/gray" />
+
+    <TableRow>
+
+
+        <TextView
+            android:text="X Import..."
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:text="X Export..."
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+        <TextView
+            android:gravity="right"
+            android:text="Ctrl-E"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </TableRow>
+
+    <View
+        android:layout_height="3dp"
+        android:background="@color/gray" />
+
+    <TextView
+        android:paddingLeft="20dp"
+        android:text="Quit"
+        android:textColor="@color/white"
+        android:textSize="24dp" />
+    />
+</TableLayout>
+

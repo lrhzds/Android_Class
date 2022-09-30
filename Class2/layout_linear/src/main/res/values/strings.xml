@@ -1,0 +1,19 @@
+<resources>
+    <string name="OneOne">One,One</string>
+    <string name="OneTwo">One,Two</string>
+    <string name="OneThree">One,Three</string>
+    <string name="OneFour">One,Four</string>
+    <string name="TwoOne">Two,One</string>
+    <string name="TwoTwo">Two,Two</string>
+    <string name="TwoThree">Two,Three</string>
+    <string name="TwoFour">Two,Four</string>
+    <string name="ThreeOne">Three,One</string>
+    <string name="ThreeTwo">Three,Two</string>
+    <string name="ThreeThree">Three,Three</string>
+    <string name="ThreeFour">Three,Four</string>
+    <string name="FourOne">Four,One</string>
+    <string name="FourTwo">Four,Two</string>
+    <string name="FourThree">Four,Three</string>
+    <string name="FourFour">Four,Four</string>
+    <string name="app_name">线性布局</string>
+</resources>
