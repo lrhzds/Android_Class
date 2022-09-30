@@ -1,13 +1,15 @@
 实验1_Android开发基础实验
 
-> 第一次作业报告it
+> 第一次作业报告
 - 使用 `Git Bash` 进行同步
 
   1. **git init**	初始化仓库
 
   2. **git add .**  上传工程代码
 
-  3. **git commit -m "commit info"**  提交信息
+  3. **.ignore**  现在不需要再自己编写了
+
+  4. **git commit -m "commit info"**  提交信息
   
   ![image](pic/img_1.png)
   
