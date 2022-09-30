@@ -92,8 +92,36 @@
 
 1. 
 > 此题代码在[layout_constraint](layout_constraint)模块中
-- 思路：
+- 思路：把组件的样式定义出来后，直接通过组件的拖拽还有设置组件的约束，就可以完成
+
 - 部分关键代码示例：
+
+  ```xml
+  <Button
+      android:id="@+id/button8"
+      android:layout_width="78dp"
+      android:layout_height="51dp"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="48dp"
+      android:backgroundTint="@color/eGray"
+      android:text="8"
+      android:textColor="@color/black"
+      android:textSize="18dp"
+      app:layout_constraintStart_toEndOf="@+id/button12"
+      app:layout_constraintTop_toBottomOf="@+id/outline" />
+  
+  <TextView
+      android:id="@+id/textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="28dp"
+      android:layout_marginTop="25dp"
+      android:text="Input"
+      android:textColor="@color/gray"
+      android:textSize="30dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+  ```
 
 - 约束布局第一题效果图如下：
 <img src="pic\img_2.png" width="200px"/>
