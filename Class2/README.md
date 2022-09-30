@@ -28,28 +28,6 @@
               android:background="@color/blue"
               android:gravity="center"
               android:padding="20px"
-              android:text="@string/OneOne"
-              android:textColor="@color/white" />
-  
-          <TextView
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_margin="2dp"
-              android:layout_weight="3"
-              android:background="@color/blue"
-              android:gravity="center"
-              android:padding="20px"
-              android:text="@string/OneTwo"
-              android:textColor="@color/white" />
-  
-          <TextView
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_margin="2dp"
-              android:layout_weight="2"
-              android:background="@color/blue"
-              android:gravity="center"
-              android:padding="20px"
               android:text="@string/OneThree"
               android:textColor="@color/white" />
   
