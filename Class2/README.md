@@ -46,7 +46,7 @@
 
 - 线性布局效果如下：
 
-<img src="pic\img.png" width="200px"/>
+<img src="pic\img.png" width="250px"/>
 
 ## 表格布局
 > 此题代码在[layout_table1](layout_table1)模块中
@@ -86,7 +86,7 @@
   ```
 
 - 表格布局效果图如下：
-<img src="pic\img_1.png" width="200px">
+<img src="pic\img_1.png" width="250px">
 
 ## 约束布局
 
@@ -124,7 +124,7 @@
   ```
 
 - 约束布局第一题效果图如下：
-<img src="pic\img_2.png" width="200px"/>
+<img src="pic\img_2.png" width="250px"/>
 
 2. 
 > 此题代码在[layout_constraint2](layout_constraint2)模块中
@@ -169,4 +169,4 @@
   ```
 
 - 约束布局第二题效果图如下：
-<img src="pic\img_3.png" width="200px"/>
+<img src="pic\img_3.png" width="250px"/>
