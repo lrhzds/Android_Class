@@ -15,6 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "Class2"
 include ':layout_linear'
 include ':layout_table1'
-include ':layout_linear:layout_constraint'
 include ':layout_constraint'
 include ':layout_constraint2'
