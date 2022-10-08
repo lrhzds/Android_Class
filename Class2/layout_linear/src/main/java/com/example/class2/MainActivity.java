@@ -18,7 +18,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AssetManager mgr=getAssets();//得到AssetManager
         TextView textView = findViewById(R.id.x);
-        Typeface tf=Typeface.createFromAsset(mgr, "a.ttf");//根据路径得到Typeface
-        textView.setTypeface(tf);//设置字体
     }
 }

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list_view);
 
         listView.setAdapter(simpleAdapter);
-        // 第六步：listview 的点击事件
+
         listView.setOnItemClickListener((parent, view, position, id) -> {
             System.out.println(view);
             view.setBackgroundColor(Color.RED);
