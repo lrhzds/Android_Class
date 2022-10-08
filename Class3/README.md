@@ -13,7 +13,7 @@
 - 关键代码：
 
 - activity_main.xml
-    
+  
     ```xml
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -65,6 +65,7 @@
                 Toast.makeText(MainActivity.this, names[position], Toast.LENGTH_SHORT).show();
             });
     ```
-
-
-<img src="pic\img.png" width="250px"/>
+    
+  - 效果截图
+  
+    <img src="pic\img.png" width="250px"/>
