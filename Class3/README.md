@@ -175,5 +175,5 @@
 
 - 效果截图：
 
-  <img src="pic\img3.png" width="250px"/><img src="pic\img4.png" width="250px"/><img src="pic\img5.png" width="250px"/>
+  <img src="pic\img3.png" width="250px"/> <img src="pic\img4.png" width="250px"/> <img src="pic\img5.png" width="250px"/>
 
