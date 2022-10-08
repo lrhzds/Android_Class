@@ -108,3 +108,72 @@
 - 效果截图
 
   <img src="pic\img2.png" width="250px"/>
+
+
+
+## 使用XML定义菜单
+
+- 思路
+
+  1. 在res下创建了一个menu包，在这个包下创建了一个item_menu.xml，在此定义menu样式
+  2. 在MainActivity.java重写onCreateOptionsMenu(Menu menu) 方法和onOptionsItemSelected(@NonNull MenuItem item)方法
+  3. 在onOptionsItemSelected(@NonNull MenuItem item)方法中调用swich函数，设置点击不同的item时的效果
+
+- 关键代码
+
+  - ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/font_size"
+            android:title="字体大小">
+            <menu>
+                <item
+                    android:id="@+id/small"
+                    android:title="小" />
+                <item
+                    android:id="@+id/normal_size"
+                    android:title="中" />
+    ```
+
+  - ```java
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //从item_menu.xml中构建菜单页面布局
+        getMenuInflater().inflate(R.menu.item_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        TextView test = findViewById(R.id.test);
+        int v = item.getItemId();
+        switch (v){
+            case R.id.normal_menu:
+                Toast.makeText(this, "点击了菜单", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.color_red:
+                test.setTextColor(Color.RED);
+                return true;
+            case R.id.color_black:
+                test.setTextColor(Color.BLACK);
+                return true;
+            case R.id.small:
+                test.setTextSize(10);
+                return true;
+            case R.id.normal_size:
+                test.setTextSize(16);
+            case R.id.big:
+                test.setTextSize(20);
+            default:
+                break;
+        }
+    
+        return super.onOptionsItemSelected(item);
+    }
+    ```
+
+- 效果截图：
+
+  <img src="pic\img3.png" width="250px"/><img src="pic\img4.png" width="250px"/><img src="pic\img5.png" width="250px"/>
+
