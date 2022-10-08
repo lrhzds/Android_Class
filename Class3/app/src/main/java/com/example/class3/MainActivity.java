@@ -1,9 +1,15 @@
 package com.example.class3;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -11,6 +17,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
             listItem.put("pic", imageIds[i]);
             list.add(listItem);
         }
-
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, list, R.layout.simple_item, new String[]{"names", "pic"}, new int[]{R.id.name, R.id.pic});
 
         ListView listView = findViewById(R.id.list_view);
+
         listView.setAdapter(simpleAdapter);
         // 第六步：listview 的点击事件
         listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -50,16 +58,23 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, names[position], Toast.LENGTH_SHORT).show();
         });
 
+
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.setBackgroundColor(Color.BLUE);
+                showXml();
             }
         });
     }
 
+    private void showXml() {
+        View view = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null);
 
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setView(view)
+                .create();
 
-
+        alertDialog.show();
+    }
 }

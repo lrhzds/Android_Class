@@ -14,10 +14,13 @@
 
     <Button
         android:id="@+id/button"
+        android:width="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:background="@drawable/btn_selector"
-        android:text="alert Dialog" />
+        android:text="alert Dialog"
+        android:textColor="@color/white"
+        android:textAllCaps="false" />
 </LinearLayout>
