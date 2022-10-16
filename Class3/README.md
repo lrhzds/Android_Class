@@ -183,76 +183,97 @@
 
 ## 创建上下文操作模式(ActionMode)的上下文菜单
 
-> 本题最初不会写，就从网上找了代码来学习和理解，
-
 参考了[csdn](https://blog.csdn.net/qq_39824472/article/details/90549797?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166567145016782427451318%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=166567145016782427451318&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-90549797-null-null.142^v56^pc_rank_34_2,201^v3^control_2&utm_term=listview%E5%88%9B%E5%BB%BAactionmode%E8%8F%9C%E5%8D%95&spm=1018.2226.3001.4187) 和 [developer文档](https://developer.android.google.cn/guide/topics/ui/menus.html#CAB)
 
 - 思路：
 
-  - 先写了一个标题栏的menu，放入了一个打勾和垃圾桶的图片
-  - 然后写了一个ListView，重写了适配器，自定义继承了BaseAdapter，将背景色的改变写在了适配器的getView里面，每次选中或取消选中时会调用适配器的notifyDataSetChanged()方法，就会在getView方法中进行判断，当被选中时改变颜色为蓝色，取消选中时变回白色
-  - 在MainActivity里面将列表设置为多选模式，然后调用ListView的setMultiChoiceModeListener方法，在里面定义一个num值，随着列表项被选中的数量进行改变，再使用mode.setTitle方法在标题栏进行显示
-  - 最后对标题栏的垃圾桶和打勾图片进行处理，当点击以后，会将每个列表项的选中状态置为false，num置为0，再调用notifyDataSetChanged()来刷新，最后再将mode菜单栏关闭
-
-- 对适配器getView方法的理解：其实就是通过setTag为每一个列表项在滚动到的时候设置唯一值，可以起到提高性能的作用，不会导致一下加载过多列表项而影响性能
+  - 先写了一个标题栏的menu，放入了一个打勾(selected)和垃圾桶(delete)的图片
+  - 将listView设置为多选模式
+  - 设num为0，当进入actionmode时会在title上显示num的值
+  - 实现setMultiChoiceModeListener方法，长按listView某item时会响应，重写里面的方法，创建时将menu加载进来，当item的状态改变时，判断是被选中还是取消选中，选中则设为蓝色，取消则变会白色，并且改变num值
+  - 当点击打勾(selected)时，调用selectedAll()方法，将所有item选中，num设为listView长度，当点击垃圾桶(delete)时，调用deleteAll方法，num=0，取消所有选中
 
 - 关键代码：
 
   - ```java
-    public View getView(final int position, View convertView, ViewGroup parent) {
+            listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+            listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+                int num = 0;
+                int blue = Color.parseColor("#00BFFF");
     
-        final ViewHolder viewHolder;
-        //如果还没加载
-        if (convertView == null) {
-            //加载布局文件，并将各个选项以及每个选项中的内容一一对应
-            convertView = View.inflate(context, R.layout.simple_item, null);
-            viewHolder = new ViewHolder();
-            viewHolder.imageView = convertView.findViewById(R.id.pic);
-            viewHolder.textView = convertView.findViewById(R.id.name);
-            viewHolder.linearLayout = convertView.findViewById(R.id.itemX);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-    
-        //得到十六进制的颜色的int值
-        int blue = Color.parseColor("#1E90FF");
-        int white = Color.parseColor("#FFFFFF");
-        viewHolder.textView.setText(list.get(position).getName());
-        //如果被选中，那么改变选中颜色
-        if (list.get(position).isBo() == true) {
-            viewHolder.linearLayout.setBackgroundColor(blue);
-        } else {
-            viewHolder.linearLayout.setBackgroundColor(white);
-        }
-        return convertView;
-    
-    }
+                @Override
+                public void onItemCheckedStateChanged(ActionMode mode, int position,
+                                                      long id, boolean checked) {
+                    // Here you can do something when items are selected/de-selected,
+                    // such as update the title in the CAB
+                    if (checked == true) {
+                        listView.getChildAt(position).setBackgroundColor(blue);
+                        num++;
+                    } else {
+                        listView.getChildAt(position).setBackgroundColor(Color.WHITE);
+                        num--;
+                    }
+                    mode.setTitle(num + " selected");
+                }
     ```
-
+    
   - ```java
-    @Override
-    public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-        if (checked == true) {
-            list.get(position).setBo(true);
-            //实时刷新
-            adapter.notifyDataSetChanged();
-            num++;
-        } else {
-            list.get(position).setBo(false);
-            //实时刷新
-            adapter.notifyDataSetChanged();
-            num--;
-        }
-        // 用TextView显示
-        mode.setTitle("  " + num + " Selected");
-    }
+                public void deleteAll() {
+                    for (int i = 0; i < listView.getCount(); i++) {
+                        listView.getChildAt(i).setBackgroundColor(Color.WHITE);
+    
+                    }
+                    num = 0;
+                }
+    
+                public void selectAll() {
+                    for (int i = 0; i < listView.getCount(); i++) {
+                        listView.getChildAt(i).setBackgroundColor(blue);
+                        listView.setItemChecked(i,true);
+    
+                    }
+                    num = listView.getCount();
+                }
+    
+                @Override
+                public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                    // Respond to clicks on the actions in the CAB
+                    switch (item.getItemId()) {
+                        case R.id.delete:
+                            deleteAll();
+                            mode.finish();
+                            return true;
+                        case R.id.selected:
+                            selectAll();
+                            num = listView.getCount();
+                            mode.setTitle(num + " selected");
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
     ```
 
 - 效果截图：
 
-  <img src="pic\img6.png" width="250px"/>
+  - 长按item后：
 
-  点击垃圾桶后：
+    <img src="pic\mode1.png" width="250px"/>
 
-  <img src="pic\img7.png" width="250px"/>
+  - 多选效果：
+
+    <img src="pic\mode2.png" width="250px"/>
+
+  - 再次点击选中项：
+
+    <img src="pic\mode3.png" width="250px"/>
+
+  - 点击打勾（全选）：
+
+    <img src="pic\mode4.png" width="250px"/>
+
+  - 点击垃圾桶（取消选中并退出）：
+
+    <img src="pic\mode5.png" width="250px"/>
+
+    

@@ -24,18 +24,22 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BaseAdapter adapter;
     private String[] names = {"One", "Two", "Three", "Four", "Five"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        List<Item> list = new ArrayList<>();
+        List<Map<String, String>> list = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
-            list.add(new Item(names[i], false));
+            HashMap<String, String> maps = new HashMap<>();
+            maps.put("names", names[i]);
+            list.add(maps);
         }
-        adapter = new AdapterCur(list, MainActivity.this);
+        //     Context context, List<? extends Map<String, ?>> data,
+//            @LayoutRes int resource, String[] from, @IdRes int[] to
+        SimpleAdapter adapter = new SimpleAdapter(MainActivity.this, list,
+                R.layout.simple_item, new String[]{"names"}, new int[]{R.id.name});
 
         ListView listView = findViewById(R.id.listView);
 
@@ -44,54 +48,55 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-
             int num = 0;
+            int blue = Color.parseColor("#00BFFF");
 
-            /*
-             * 参数：ActionMode是长按后出现的标题栏
-             * 		positon是当前选中的item的序号
-             *		id 是当前选中的item的id
-             *		checked 如果是选中事件则为true，如果是取消事件则为false
-             */
             @Override
-            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+            public void onItemCheckedStateChanged(ActionMode mode, int position,
+                                                  long id, boolean checked) {
+                // Here you can do something when items are selected/de-selected,
+                // such as update the title in the CAB
                 if (checked == true) {
-                    list.get(position).setBo(true);
-                    //实时刷新
-                    adapter.notifyDataSetChanged();
+                    listView.getChildAt(position).setBackgroundColor(blue);
                     num++;
                 } else {
-                    list.get(position).setBo(false);
-                    //实时刷新
-                    adapter.notifyDataSetChanged();
+                    listView.getChildAt(position).setBackgroundColor(Color.WHITE);
                     num--;
                 }
-                // 用TextView显示
-                mode.setTitle("  " + num + " Selected");
+                mode.setTitle(num + " selected");
             }
 
+            public void deleteAll() {
+                for (int i = 0; i < listView.getCount(); i++) {
+                    listView.getChildAt(i).setBackgroundColor(Color.WHITE);
+
+                }
+                num = 0;
+            }
+
+            public void selectAll() {
+                for (int i = 0; i < listView.getCount(); i++) {
+                    listView.getChildAt(i).setBackgroundColor(blue);
+                    listView.setItemChecked(i,true);
+
+                }
+                num = listView.getCount();
+            }
 
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                // Respond to clicks on the actions in the CAB
                 switch (item.getItemId()) {
-                    //全选
-                    case R.id.selected:
-                        num = 0;
-                        refresh();
-                        adapter.notifyDataSetChanged();
+                    case R.id.delete:
+                        deleteAll();
                         mode.finish();
                         return true;
-                    //删除
-                    case R.id.delete:
-                        adapter.notifyDataSetChanged();
-                        num = 0;
-                        refresh();
-                        mode.finish();
+                    case R.id.selected:
+                        selectAll();
+                        num = listView.getCount();
+                        mode.setTitle(num + " selected");
                         return true;
                     default:
-                        refresh();
-                        adapter.notifyDataSetChanged();
-                        num = 0;
                         return false;
                 }
             }
@@ -101,36 +106,24 @@ public class MainActivity extends AppCompatActivity {
                 // Inflate the menu for the CAB
                 MenuInflater inflater = mode.getMenuInflater();
                 inflater.inflate(R.menu.action_menu, menu);
-                num = 0;
                 return true;
             }
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
-                refresh();
-                adapter.notifyDataSetChanged();
-            }
-            public void refresh(){
-                for(int i = 0; i < names.length; i++){
-                    list.get(i).setBo(false);
-                }
+                deleteAll();
+                mode = null;
+                // Here you can make any necessary updates to the activity when
+                // the CAB is removed. By default, selected items are deselected/unchecked.
             }
 
             @Override
             public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-
-                adapter.notifyDataSetChanged();
-                return false;
+                // Here you can perform updates to the CAB due to
+                // an <code><a href="/reference/android/view/ActionMode.html#invalidate()">invalidate()</a></code> request
+                return true;
             }
         });
-
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //从item_menu.xml中构建菜单页面布局
-        getMenuInflater().inflate(R.menu.action_menu, menu);
-        return true;
-    }
 }

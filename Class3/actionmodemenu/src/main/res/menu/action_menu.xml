@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingDefaultResource">
     <item
+        android:iconTint="@color/white"
         android:id="@+id/selected"
         android:icon="@drawable/selected"
         android:title="selected"
         app:showAsAction="always" />
     <item
+        android:iconTint="@color/white"
         android:id="@+id/delete"
         android:icon="@drawable/dustbin"
         android:title="dustbin"
