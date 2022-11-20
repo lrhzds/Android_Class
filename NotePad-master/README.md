@@ -225,7 +225,7 @@ public boolean setViewValue(View view,Cursor cursor,int i){
 
 #### 蓝白主题
 
-<img src="picture\white1.png" width="250px"/>     <img src="picture\white2.png" width="250px"/>
+<img src="picture\paixu3.png" width="250px"/>     <img src="picture\pic4.png" width="250px"/>
 
 #### 黑白主题
 
