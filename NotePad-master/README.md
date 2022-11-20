@@ -4,7 +4,10 @@
 - [时间戳](#时间戳)
 - [查询功能](#查询功能)
 - [UI美化](#UI美化)
+  - [悬浮按钮](#FloatingActionButton(悬浮按钮))
   - [主题](#主题)
+  - [其他](#其他)
+- [保存图片](#保存图片)
 
 ## 时间戳
 
@@ -37,7 +40,9 @@ adapter.setViewBinder(viewBinder);
 
 
 
-# 查询功能
+
+
+## 查询功能
 
 - 效果图：
 
@@ -89,9 +94,64 @@ adapter.setViewBinder(viewBinder);
   });
   ```
 
----
+
 
 ## UI美化
+
+### FloatingActionButton(悬浮按钮)
+
+- 我给这两个按钮分别设置了打开侧拉菜单和创建新笔记的功能
+
+<img src="picture\floatingactionbutton.png" width="250px"/>
+
+- 这个按钮可以悬浮的展示在界面的上方，打开软键盘时会自动上移
+
+<img src="picture\query1.png" width="250px"/>
+
+```xml
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+    android:layout_margin="16dp"
+    android:elevation="0dp"
+    android:src="@drawable/setting"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    app:borderWidth="0dp"
+    app:tint="@null" />
+```
+
+
+
+### MaterialButton
+
+- 这也是一种悬浮按钮，更方便设置样式
+
+<img src="picture\button.png" width="250px"/>
+
+```xml
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/edit_title"
+    android:layout_width="150dp"
+    android:layout_height="50dp"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    android:backgroundTint="@color/Normal"
+    android:text="Edit Title"
+    android:textAllCaps="false"
+    android:textColor="@android:color/white"
+    android:textSize="18sp"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    app:shapeAppearanceOverlay="@style/tipImageStyle" />
+```
+
+- 最后一行是用来设置样式的
 
 ### 主题
 
@@ -111,4 +171,255 @@ adapter.setViewBinder(viewBinder);
 
 - 我在xml里面给主界面套了一个侧拉菜单,可以通过侧拉和点击下面我设置的`FloatingActionButton`让其出现
 
+  ```java
+  fab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+          mDrawerLayout.openDrawer(Gravity.LEFT);
+      }
+  });
+  ```
+
+  - 然后我用到了`ExpandableListView`，这个主要是用来做侧拉菜单中的二级菜单的，普通的`ListView`很难搞出二级菜单
+
 <img src="picture\right_side.png" width="250px"/>
+
+- 这是主题转换的部分代码
+
+```java
+//子视图的点击事件
+        expand_list_id.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
+                Toast.makeText(NotesList.this, childs[groupPosition][childPosition], Toast.LENGTH_SHORT).show();
+
+                /**点击黑白主题*/
+                if (childs[groupPosition][childPosition] == "黑白主题") {
+                    int editTextBgColor = Color.rgb(50, 50, 50);
+                    int editTextColor = Color.rgb(255, 255, 255);
+                    int main_bgColor = Color.rgb(50, 50, 50);
+                    int dc = R.drawable.color1;
+                    int itemBgColor = R.drawable.item_bgcolor_black;
+                    int win_rgb = Color.rgb(77, 78, 78);
+                    SharedPreferences.Editor editor = getSharedPreferences("bgColor", MODE_PRIVATE).edit();
+                    editor.putInt("dc", dc);
+                    editor.putInt("win_rgb", win_rgb);
+                    editor.putInt("editTextBgColor", editTextBgColor);
+                    editor.putInt("editTextColor", editTextColor);
+                    editor.putInt("itemBgColor", itemBgColor);
+                    editor.putInt("main_bgColor", main_bgColor);
+                    SharedPreferences pref = getSharedPreferences("bgColor", MODE_PRIVATE);
+                    editor.apply();
+
+                    int dc1 = pref.getInt("dc", 0);
+                    ActionBar actionBar = getActionBar();
+                    Drawable dr = NotesList.this.getResources().getDrawable(dc1);
+                    actionBar.setBackgroundDrawable(dr);
+                    int win_rgb1 = pref.getInt("win_rgb", 0);
+                    Window window = NotesList.this.getWindow();
+                    window.setStatusBarColor(win_rgb1);
+                    int item_BgColor = pref.getInt("itemBgColor", 0);
+//                    Drawable item_bg = NotesList.this.getResources().getDrawable(item_BgColor);
+//                    LinearLayout main_list = findViewById(R.id.main_list_item);
+                    int main_bgColor1 = pref.getInt("main_bgColor", 0);
+                    NotesList.this.getListView().setBackgroundColor(main_bgColor1);
+//                    View viewById = findViewById(R.id.main_list_item);
+//                    viewById.setBackgroundColor(Color.rgb(33,33,33));
+                    FloatingActionButton fab = findViewById(R.id.fab);
+
+                }
+```
+
+### 其他
+
+#### 确认删除
+
+- 比较简单，不作介绍
+
+<img src="picture\must.png" width="250px"/>
+
+
+
+## 保存图片
+
+<img src="picture\pic1.png" width="250px"/>
+
+- 点击左上角图片，即可打开选图界面
+
+<img src="picture\pic2.png" width="250px"/>
+
+- 随便选择几个图片
+
+<img src="picture\pic4.png" width="250px"/>
+
+
+
+- 插图部分相对复杂，首先在`manifest`里面添加权限
+
+  ```xml
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  ```
+
+- 在`activity`里面，使用`callGallery`调用图库
+
+  ```java
+  //region 调用图库
+  private void callGallery() {
+      Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
+      getAlbum.setType("image/*");
+      startActivityForResult(getAlbum, IMAGE_CODE);
+  }
+  ```
+
+- 获取图片Uri
+
+  ```java
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+      //参考网址：http://blog.csdn.net/abc__d/article/details/51790806
+      Bitmap bm = null;
+      // 外界的程序访问ContentProvider所提供数据 可以通过ContentResolver接口
+      ContentResolver resolver = getContentResolver();
+      if (requestCode == IMAGE_CODE) {
+          try {
+              // 获得图片的uri
+              Uri originalUri = data.getData();
+  
+  
+              path = getPathByUri4kitkat(NoteEditor.this, originalUri);
+  
+              insertImg(path);
+              Toast.makeText(NoteEditor.this, path, Toast.LENGTH_SHORT).show();
+          } catch (Exception e) {
+              e.printStackTrace();
+              Toast.makeText(this, "图片插入失败", Toast.LENGTH_SHORT).show();
+          }
+      }
+  }
+  ```
+
+- 将Uri转为绝对路径
+
+  ```java
+  @SuppressLint("NewApi")
+  public static String getPathByUri4kitkat(final Context context, final Uri uri) {
+      final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+      // DocumentProvider
+      if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+          if (isExternalStorageDocument(uri)) {// ExternalStorageProvider
+              final String docId = DocumentsContract.getDocumentId(uri);
+              final String[] split = docId.split(":");
+              final String type = split[0];
+              if ("primary".equalsIgnoreCase(type)) {
+                  return Environment.getExternalStorageDirectory() + "/" + split[1];
+              }
+          } else if (isDownloadsDocument(uri)) {// DownloadsProvider
+              final String id = DocumentsContract.getDocumentId(uri);
+              final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),
+                      Long.valueOf(id));
+              return getDataColumn(context, contentUri, null, null);
+          } else if (isMediaDocument(uri)) {// MediaProvider
+              final String docId = DocumentsContract.getDocumentId(uri);
+              final String[] split = docId.split(":");
+              final String type = split[0];
+              Uri contentUri = null;
+              if ("image".equals(type)) {
+                  contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+              } else if ("video".equals(type)) {
+                  contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+              } else if ("audio".equals(type)) {
+                  contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+              }
+              final String selection = "_id=?";
+              final String[] selectionArgs = new String[]{split[1]};
+              return getDataColumn(context, contentUri, selection, selectionArgs);
+          }
+      } else if ("content".equalsIgnoreCase(uri.getScheme())) {// MediaStore
+          // (and
+          // general)
+          return getDataColumn(context, uri, null, null);
+      } else if ("file".equalsIgnoreCase(uri.getScheme())) {// File
+          return uri.getPath();
+      }
+      return null;
+  }
+  ```
+
+- 在`edittext`里面插入图片地址
+
+  ```java
+  private void insertImg(String path) {
+      String tagPath = "<img src=\"" + path + "\"/>";//为图片路径加上<img>标签
+      Bitmap bitmap = BitmapFactory.decodeFile(path);
+  
+      if (bitmap != null) {
+          SpannableString ss = getBitmapMime(path, tagPath);
+  
+          insertPhotoToEditText(ss);
+          mText.append("\n");
+          Log.d("YYPT", mText.getText().toString());
+      }
+  }
+   //region 将图片插入到EditText中
+      private void insertPhotoToEditText(SpannableString ss) {
+          Editable et = mText.getText();
+          int start = mText.getSelectionStart();
+          et.insert(start, ss);
+          mText.setText(et);
+  
+  
+          mText.setSelection(start + ss.length());
+          mText.setFocusableInTouchMode(true);
+          mText.setFocusable(true);
+  
+  
+          updateNote(mText.getText().toString(), getTitle().toString());
+  
+      }
+      //endregion
+  
+      private SpannableString getBitmapMime(String path, String tagPath) {
+          SpannableString ss = new SpannableString(tagPath);//这里使用加了<img>标签的图片路径
+  
+          int width = ScreenUtils.getScreenWidth(this);
+          int height = ScreenUtils.getScreenHeight(this);
+  
+          Bitmap bitmap = ImageUtils.getSmallBitmap(path, width, 480);
+          ImageSpan imageSpan = new ImageSpan(this, bitmap);
+          ss.setSpan(imageSpan, 0, tagPath.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+          return ss;
+      }
+  ```
+
+- 这个方法将存入到数据库中的字符串进行解析，并通过图片的地址在edittext上面展示图片
+
+  ```
+  private void initContent() {
+      //input是获取将被解析的字符串
+      String input = note;
+  
+      //将图片那一串字符串解析出来,即<img src=="xxx" />
+      Pattern p = Pattern.compile("\\<img src=\".*?\"\\/>");
+      Matcher m = p.matcher(input);
+  
+      SpannableString spannable = new SpannableString(input);
+      while (m.find()) {
+          //Log.d("YYPT_RGX", m.group());
+          //这里s保存的是整个式子，即<img src="xxx"/>，start和end保存的是下标
+          String s = m.group();
+          int start = m.start();
+          int end = m.end();
+          //path是去掉<img src=""/>的中间的图片路径
+          String path = s.replaceAll("\\<img src=\"|\"\\/>", "").trim();
+  
+          Bitmap bitmap = ImageUtils.getSmallBitmap(path, 50, 300);
+          ImageSpan imageSpan = new ImageSpan(this, bitmap);
+          spannable.setSpan(imageSpan, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+      }
+      mText.setText(spannable);
+      mText.append("\n");
+      updateNote(mText.getText().toString(), getTitle().toString());
+  }
+  ```

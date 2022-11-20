@@ -562,22 +562,7 @@ public class NoteEditor extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    Html.ImageGetter imageGetter = new Html.ImageGetter() {
-        @Override
-        public Drawable getDrawable(String s) {
-              /*  Drawable drawable = null;
-                drawable = Drawable.createFromPath(s);
 
-                drawable.setBounds(0,0,480,480);
-                return drawable;*/
-            int width = ScreenUtils.getScreenWidth(NoteEditor.this);
-            int height = ScreenUtils.getScreenHeight(NoteEditor.this);
-            Bitmap bitmap = ImageUtils.getSmallBitmap(s, width, 480);
-            Drawable drawable = new BitmapDrawable(bitmap);
-            drawable.setBounds(0, 0, width, height);
-            return drawable;
-        }
-    };
 
     /**
      * =================================插入图片==================================
