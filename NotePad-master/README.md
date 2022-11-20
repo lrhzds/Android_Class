@@ -26,7 +26,7 @@ dependencies{
 
 - 效果图：
 
-<img src="picture\time-text.png" width="250px"/>
+<img src="picture\paixu3.png" width="250px"/>
 
 - 分析：源程序中已有更新事件的条目，只要把它取出来用就行，然后再进行如下转换，将毫秒数转为上图形式
 - 关键代码：
@@ -55,7 +55,7 @@ public boolean setViewValue(View view,Cursor cursor,int i){
 
 - 效果图：
 
-<img src="picture\query1.png" width="250px"/>     <img src="picture\query.png" width="250px"/>
+<img src="picture\query.png" width="250px"/>     <img src="picture\query1.png" width="250px"/>
 
 - 分析：
     - 在`ActionBar`上面先放了一个放大镜的图标，使用`setOnQueryTextListener`设置文本监听。重写`onQueryTextChange`
