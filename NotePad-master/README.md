@@ -15,6 +15,7 @@ dependencies{
 
 - [时间戳](#时间戳)
 - [查询功能](#查询功能)
+- [排序](#排序)
 - [UI美化](#UI美化)
     - [悬浮按钮](#FloatingActionButton(悬浮按钮))
     - [主题](#主题)
@@ -101,6 +102,53 @@ public boolean setViewValue(View view,Cursor cursor,int i){
           return true;
       }
   });
+  ```
+
+
+
+## 排序
+
+- 后面新补充的，该部分比较简单，因此写的比较潦草
+
+- 可以按照修改时间升序和降序两种排列
+
+  
+
+  - 升序
+
+  <img src="picture\paixu2.png" width="250px"/>
+
+  - 降序
+
+  <img src="picture\paixu3.png" width="250px"/>
+
+  ```java
+  case R.id.sheng:
+      cursor = managedQuery(
+              getIntent().getData(),            // Use the default content URI for the provider.
+              PROJECTION,                       // Return the note ID and title for each note.
+              null,
+              null,// No where clause, therefore no where column values.
+              NotePad.Notes.NEW_SORT_ORDER  // Use the default sort order.
+      );
+      adapter = null;
+      adapter = x(cursor);
+      // Sets the ListView's adapter to be the cursor adapter that was just created.
+      setListAdapter(adapter);
+      return true;
+  case R.id.jiang:
+      cursor = managedQuery(
+              getIntent().getData(),            // Use the default content URI for the provider.
+              PROJECTION,                       // Return the note ID and title for each note.
+              null,
+              null,// No where clause, therefore no where column values.
+              NotePad.Notes.DEFAULT_SORT_ORDER  // Use the default sort order.
+      );
+      adapter = null;
+      adapter = x(cursor);
+      // Sets the ListView's adapter to be the cursor adapter that was just created.
+      setListAdapter(adapter);
+      return true;
   ```
 
 ## UI美化
