@@ -1,12 +1,24 @@
 # NotePad
+
 > 期中作业
+
+- 依赖库
+
+```xml
+dependencies{
+        implementation fileTree(dir:'libs',includes:['*.jar'])
+        implementation'com.google.android.material:material:1.3.0'
+        implementation'de.hdodenhof:circleimageview:2.1.0'
+        implementation'androidx.appcompat:appcompat:1.0.0'
+        }
+```
 
 - [时间戳](#时间戳)
 - [查询功能](#查询功能)
 - [UI美化](#UI美化)
-  - [悬浮按钮](#FloatingActionButton(悬浮按钮))
-  - [主题](#主题)
-  - [其他](#其他)
+    - [悬浮按钮](#FloatingActionButton(悬浮按钮))
+    - [主题](#主题)
+    - [其他](#其他)
 - [保存图片](#保存图片)
 
 ## 时间戳
@@ -19,28 +31,24 @@
 - 关键代码：
 
 ```java
-SimpleCursorAdapter.ViewBinder viewBinder = new SimpleCursorAdapter.ViewBinder() {
-    @Override
-    public boolean setViewValue(View view, Cursor cursor, int i) {
-        if (cursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE) == i) {
-            TextView textView1 = (TextView) view;
-            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd  HH:mm", Locale.CHINA);
-            Date date = new Date(cursor.getLong(i) + (long) (8 * 60 * 60 * 1000));
-            Log.d("TIME", "onCreate10:" + cursor.getLong(i));
-            String time = format.format(date);
-            Log.d("TIME", "onCreate1:" + time);
-            textView1.setText(time);
-            return true;
+SimpleCursorAdapter.ViewBinder viewBinder=new SimpleCursorAdapter.ViewBinder(){
+@Override
+public boolean setViewValue(View view,Cursor cursor,int i){
+        if(cursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE)==i){
+        TextView textView1=(TextView)view;
+        SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd  HH:mm",Locale.CHINA);
+        Date date=new Date(cursor.getLong(i)+(long)(8*60*60*1000));
+        Log.d("TIME","onCreate10:"+cursor.getLong(i));
+        String time=format.format(date);
+        Log.d("TIME","onCreate1:"+time);
+        textView1.setText(time);
+        return true;
         }
         return false;
-    }
-};
-adapter.setViewBinder(viewBinder);
+        }
+        };
+        adapter.setViewBinder(viewBinder);
 ```
-
-
-
-
 
 ## 查询功能
 
@@ -49,8 +57,9 @@ adapter.setViewBinder(viewBinder);
 <img src="picture\query1.png" width="250px"/>     <img src="picture\query.png" width="250px"/>
 
 - 分析：
-  - 在`ActionBar`上面先放了一个放大镜的图标，使用`setOnQueryTextListener`设置文本监听。重写`onQueryTextChange`，这个的效果是一旦输入内容就会执行里面的内容，而不需要点击确认才开始执行。
-  - 这里使用了模糊查询，默认以内容的修改事件降序排列，就是按时间戳的事件排
+    - 在`ActionBar`上面先放了一个放大镜的图标，使用`setOnQueryTextListener`设置文本监听。重写`onQueryTextChange`
+      ，这个的效果是一旦输入内容就会执行里面的内容，而不需要点击确认才开始执行。
+    - 这里使用了模糊查询，默认以内容的修改事件降序排列，就是按时间戳的事件排
 
 - 关键代码：
 
@@ -94,8 +103,6 @@ adapter.setViewBinder(viewBinder);
   });
   ```
 
-
-
 ## UI美化
 
 ### FloatingActionButton(悬浮按钮)
@@ -109,21 +116,14 @@ adapter.setViewBinder(viewBinder);
 <img src="picture\query1.png" width="250px"/>
 
 ```xml
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentBottom="true"
-    android:layout_margin="16dp"
-    android:elevation="0dp"
-    android:src="@drawable/setting"
-    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-    app:borderWidth="0dp"
+
+<com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fab"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_alignParentRight="true" android:layout_alignParentBottom="true"
+    android:layout_margin="16dp" android:elevation="0dp" android:src="@drawable/setting"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" app:borderWidth="0dp"
     app:tint="@null" />
 ```
-
-
 
 ### MaterialButton
 
@@ -134,22 +134,14 @@ adapter.setViewBinder(viewBinder);
 必须要声明`theme="@style/Theme.MaterialComponents.Light.NoActionBar"`，不然会报错
 
 ```xml
-<com.google.android.material.button.MaterialButton
-    android:id="@+id/edit_title"
-    android:layout_width="150dp"
-    android:layout_height="50dp"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentBottom="true"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
-    android:backgroundTint="@color/Normal"
-    android:text="Edit Title"
-    android:textAllCaps="false"
-    android:textColor="@android:color/white"
-    android:textSize="18sp"
-    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+
+<com.google.android.material.button.MaterialButton android:id="@+id/edit_title"
+    android:layout_width="150dp" android:layout_height="50dp" android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true" android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp" android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp" android:backgroundTint="@color/Normal"
+    android:text="Edit Title" android:textAllCaps="false" android:textColor="@android:color/white"
+    android:textSize="18sp" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
     app:shapeAppearanceOverlay="@style/tipImageStyle" />
 ```
 
@@ -169,8 +161,6 @@ adapter.setViewBinder(viewBinder);
 
 <img src="picture\black1.png" width="250px"/>     <img src="picture\black2.png" width="250px"/>
 
-
-
 - 我在xml里面给主界面套了一个侧拉菜单,可以通过侧拉和点击下面我设置的`FloatingActionButton`让其出现
 
   ```java
@@ -182,62 +172,45 @@ adapter.setViewBinder(viewBinder);
   });
   ```
 
-  - 然后我用到了`ExpandableListView`，这个主要是用来做侧拉菜单中的二级菜单的，普通的`ListView`很难搞出二级菜单
+    - 然后我用到了`ExpandableListView`，这个主要是用来做侧拉菜单中的二级菜单的，普通的`ListView`很难搞出二级菜单
 
 <img src="picture\right_side.png" width="250px"/>
 
-- 这是侧拉菜单的xml文件，先在外面套一个`androidx.drawerlayout.widget.DrawerLayout`，然后在其里面添加两个布局，第一个布局表示的是主页面，第二个布局放的是侧拉菜单的页面，主页面里面的ListView必须设id为list，不然在activity里面设置setContentView时会显示不出来。
+- 这是侧拉菜单的xml文件，先在外面套一个`androidx.drawerlayout.widget.DrawerLayout`
+  ，然后在其里面添加两个布局，第一个布局表示的是主页面，第二个布局放的是侧拉菜单的页面，主页面里面的ListView必须设id为list，不然在activity里面设置setContentView时会显示不出来。
 
 ```xml
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawerLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
 
-    <RelativeLayout
-        android:id="@+id/activity_main"
-        android:layout_width="match_parent"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/drawerLayout"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fitsSystemWindows="true" tools:openDrawer="start">
+
+    <RelativeLayout android:id="@+id/activity_main" android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="16dp"
-                android:elevation="0dp"
-                android:src="@drawable/setting"
+                android:id="@+id/fab" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true" android:layout_margin="16dp"
+                android:elevation="0dp" android:src="@drawable/setting"
                 android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-                app:borderWidth="0dp"
-                app:tint="@null" />
+                app:borderWidth="0dp" app:tint="@null" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="100dp"
-                android:layout_marginBottom="16dp"
-                android:elevation="8dp"
+                android:id="@+id/fab2" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true" android:layout_marginRight="100dp"
+                android:layout_marginBottom="16dp" android:elevation="8dp"
                 android:src="@drawable/add"
                 android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-                android:tint="@color/white"
-                app:borderWidth="0dp"
-                app:tint="@null" />
+                android:tint="@color/white" app:borderWidth="0dp" app:tint="@null" />
 
-            <ListView
-                android:id="@android:id/list"
-                android:layout_width="match_parent"
+            <ListView android:id="@android:id/list" android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:defaultFocusHighlightEnabled="false"></ListView>
 
@@ -246,38 +219,23 @@ adapter.setViewBinder(viewBinder);
 
 
     <!--    侧拉菜单-->
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
+    <LinearLayout android:layout_width="300dp" android:layout_height="match_parent"
         android:layout_gravity="left">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/white"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:layout_gravity="start" android:background="@color/white"
+            android:clickable="true" android:focusable="true" android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@color/time_text"
-                android:gravity="center">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="200dp"
+                android:background="@color/time_text" android:gravity="center">
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="40dp"
-                    android:src="@drawable/head" />
+                <ImageView android:layout_width="80dp" android:layout_height="80dp"
+                    android:layout_marginTop="40dp" android:src="@drawable/head" />
             </LinearLayout>
 
-            <ExpandableListView
-                android:id="@+id/expand_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:indicatorLeft="0dp"
+            <ExpandableListView android:id="@+id/expand_list" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:indicatorLeft="0dp"
                 android:indicatorRight="40dp" />
         </LinearLayout>
     </LinearLayout>
@@ -289,46 +247,46 @@ adapter.setViewBinder(viewBinder);
 
 ```java
 //子视图的点击事件
-        expand_list_id.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
-                Toast.makeText(NotesList.this, childs[groupPosition][childPosition], Toast.LENGTH_SHORT).show();
+        expand_list_id.setOnChildClickListener(new ExpandableListView.OnChildClickListener(){
+@Override
+public boolean onChildClick(ExpandableListView expandableListView,View view,int groupPosition,int childPosition,long l){
+        Toast.makeText(NotesList.this,childs[groupPosition][childPosition],Toast.LENGTH_SHORT).show();
 
-                /**点击黑白主题*/
-                if (childs[groupPosition][childPosition] == "黑白主题") {
-                    int editTextBgColor = Color.rgb(50, 50, 50);
-                    int editTextColor = Color.rgb(255, 255, 255);
-                    int main_bgColor = Color.rgb(50, 50, 50);
-                    int dc = R.drawable.color1;
-                    int itemBgColor = R.drawable.item_bgcolor_black;
-                    int win_rgb = Color.rgb(77, 78, 78);
-                    SharedPreferences.Editor editor = getSharedPreferences("bgColor", MODE_PRIVATE).edit();
-                    editor.putInt("dc", dc);
-                    editor.putInt("win_rgb", win_rgb);
-                    editor.putInt("editTextBgColor", editTextBgColor);
-                    editor.putInt("editTextColor", editTextColor);
-                    editor.putInt("itemBgColor", itemBgColor);
-                    editor.putInt("main_bgColor", main_bgColor);
-                    SharedPreferences pref = getSharedPreferences("bgColor", MODE_PRIVATE);
-                    editor.apply();
+        /**点击黑白主题*/
+        if(childs[groupPosition][childPosition]=="黑白主题"){
+        int editTextBgColor=Color.rgb(50,50,50);
+        int editTextColor=Color.rgb(255,255,255);
+        int main_bgColor=Color.rgb(50,50,50);
+        int dc=R.drawable.color1;
+        int itemBgColor=R.drawable.item_bgcolor_black;
+        int win_rgb=Color.rgb(77,78,78);
+        SharedPreferences.Editor editor=getSharedPreferences("bgColor",MODE_PRIVATE).edit();
+        editor.putInt("dc",dc);
+        editor.putInt("win_rgb",win_rgb);
+        editor.putInt("editTextBgColor",editTextBgColor);
+        editor.putInt("editTextColor",editTextColor);
+        editor.putInt("itemBgColor",itemBgColor);
+        editor.putInt("main_bgColor",main_bgColor);
+        SharedPreferences pref=getSharedPreferences("bgColor",MODE_PRIVATE);
+        editor.apply();
 
-                    int dc1 = pref.getInt("dc", 0);
-                    ActionBar actionBar = getActionBar();
-                    Drawable dr = NotesList.this.getResources().getDrawable(dc1);
-                    actionBar.setBackgroundDrawable(dr);
-                    int win_rgb1 = pref.getInt("win_rgb", 0);
-                    Window window = NotesList.this.getWindow();
-                    window.setStatusBarColor(win_rgb1);
-                    int item_BgColor = pref.getInt("itemBgColor", 0);
+        int dc1=pref.getInt("dc",0);
+        ActionBar actionBar=getActionBar();
+        Drawable dr=NotesList.this.getResources().getDrawable(dc1);
+        actionBar.setBackgroundDrawable(dr);
+        int win_rgb1=pref.getInt("win_rgb",0);
+        Window window=NotesList.this.getWindow();
+        window.setStatusBarColor(win_rgb1);
+        int item_BgColor=pref.getInt("itemBgColor",0);
 //                    Drawable item_bg = NotesList.this.getResources().getDrawable(item_BgColor);
 //                    LinearLayout main_list = findViewById(R.id.main_list_item);
-                    int main_bgColor1 = pref.getInt("main_bgColor", 0);
-                    NotesList.this.getListView().setBackgroundColor(main_bgColor1);
+        int main_bgColor1=pref.getInt("main_bgColor",0);
+        NotesList.this.getListView().setBackgroundColor(main_bgColor1);
 //                    View viewById = findViewById(R.id.main_list_item);
 //                    viewById.setBackgroundColor(Color.rgb(33,33,33));
-                    FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab=findViewById(R.id.fab);
 
-                }
+        }
 ```
 
 ### 其他
@@ -338,8 +296,6 @@ adapter.setViewBinder(viewBinder);
 - 比较简单，不作介绍
 
 <img src="picture\must.png" width="250px"/>
-
-
 
 ## 保存图片
 
@@ -352,8 +308,6 @@ adapter.setViewBinder(viewBinder);
 - 随便选择几个图片
 
 <img src="picture\pic4.png" width="250px"/>
-
-
 
 - 插图部分相对复杂，首先在`manifest`里面添加权限
 
