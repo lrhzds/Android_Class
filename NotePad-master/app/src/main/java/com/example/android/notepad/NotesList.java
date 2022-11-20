@@ -134,7 +134,13 @@ public class NotesList extends ListActivity {
             }
         });
 
-
+        FloatingActionButton fab2 = findViewById(R.id.fab2);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
+            }
+        });
         // The user does not need to hold down the key to use menu shortcuts.
         setDefaultKeyMode(DEFAULT_KEYS_SHORTCUT);
         editor = getSharedPreferences("bgColor", MODE_PRIVATE).edit();
@@ -556,14 +562,6 @@ public class NotesList extends ListActivity {
             case android.R.id.home:   //返回键的id
 
                 return false;
-            case R.id.menu_add:
-                /*
-                 * Launches a new Activity using an Intent. The intent filter for the Activity
-                 * has to have action ACTION_INSERT. No category is set, so DEFAULT is assumed.
-                 * In effect, this starts the NoteEditor Activity in NotePad.
-                 */
-                startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
-                return true;
             case R.id.menu_paste:
                 /*
                  * Launches a new Activity using an Intent. The intent filter for the Activity

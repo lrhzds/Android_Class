@@ -1943,7 +1943,6 @@ id material_timepicker_mode_button
 id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
-id menu_add
 id menu_delete
 id menu_paste
 id menu_picture
