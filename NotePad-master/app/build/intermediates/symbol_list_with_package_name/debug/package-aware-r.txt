@@ -1795,6 +1795,7 @@ id barrier
 id baseline
 id beginOnFirstDraw
 id beginning
+id big
 id blocking
 id bottom
 id bounce
@@ -2057,6 +2058,7 @@ id showTitle
 id sin
 id skipCollapsed
 id slide
+id small
 id smallLabel
 id snackbar_action
 id snackbar_text
@@ -2138,6 +2140,7 @@ id withText
 id withinBounds
 id wrap
 id wrap_content
+id x
 id zero_corner_chip
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur

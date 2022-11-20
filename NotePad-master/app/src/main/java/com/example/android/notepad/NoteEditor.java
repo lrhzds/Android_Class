@@ -335,7 +335,10 @@ public class NoteEditor extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        SharedPreferences pref = getSharedPreferences("bgColor", MODE_PRIVATE);
+        int size = pref.getInt("size", 0);
+        System.out.println(size);
+        mText.setTextSize(size);
         /*
          * mCursor is initialized, since onCreate() always precedes onResume for any running
          * process. This tests that it's not null, since it should always contain data.
@@ -508,8 +511,24 @@ public class NoteEditor extends Activity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        SharedPreferences.Editor edit = getSharedPreferences("bgColor", MODE_PRIVATE).edit();
         // Handle all of the possible menu actions.
         switch (item.getItemId()) {
+            case R.id.big:
+                edit.putInt("size",30);
+                edit.apply();
+                mText.setTextSize(30);
+                break;
+            case R.id.normal:
+                edit.putInt("size",22);
+                edit.apply();
+                mText.setTextSize(22);
+                break;
+            case R.id.small:
+                edit.putInt("size",15);
+                edit.apply();
+                mText.setTextSize(15);
+                break;
             case R.id.menu_save:
                 String text = mText.getText().toString();
 

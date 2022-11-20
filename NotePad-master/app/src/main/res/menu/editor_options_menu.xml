@@ -20,4 +20,16 @@
         android:showAsAction="always"
         android:title="@string/menu_delete"
         tools:ignore="AppCompatResource" />
+    <item
+        android:id="@+id/x"
+        android:title="字体大小">
+        <menu>
+            <item android:id="@+id/big"
+                android:title="30sp"/>
+            <item android:id="@+id/normal"
+                android:title="22sp"/>
+            <item android:id="@+id/small"
+                android:title="15sp"/>
+        </menu>
+    </item>
 </menu>

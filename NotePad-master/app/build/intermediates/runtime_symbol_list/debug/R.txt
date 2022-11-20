@@ -1794,6 +1794,7 @@ int id barrier 0x7f080051
 int id baseline 0x7f080052
 int id beginOnFirstDraw 0x7f080053
 int id beginning 0x7f080054
+int id big 0x7f0801ad
 int id blocking 0x7f080055
 int id bottom 0x7f080056
 int id bounce 0x7f080057
@@ -2056,6 +2057,7 @@ int id showTitle 0x7f080157
 int id sin 0x7f080158
 int id skipCollapsed 0x7f080159
 int id slide 0x7f08015a
+int id small 0x7f0801ae
 int id smallLabel 0x7f08015b
 int id snackbar_action 0x7f08015c
 int id snackbar_text 0x7f08015d
@@ -2137,6 +2139,7 @@ int id withText 0x7f0801a8
 int id withinBounds 0x7f0801a9
 int id wrap 0x7f0801aa
 int id wrap_content 0x7f0801ab
+int id x 0x7f0801af
 int id zero_corner_chip 0x7f0801ac
 int integer abc_config_activityDefaultDur 0x7f090000
 int integer abc_config_activityShortDur 0x7f090001
