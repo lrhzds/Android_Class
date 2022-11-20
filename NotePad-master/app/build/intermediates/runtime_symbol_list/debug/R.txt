@@ -1706,6 +1706,8 @@ int drawable ripple 0x7f0700a7
 int drawable search 0x7f0700a8
 int drawable search4 0x7f0700a9
 int drawable setting 0x7f0700aa
+int drawable sort 0x7f0700ae
+int drawable sort1 0x7f0700af
 int drawable test_custom_background 0x7f0700ab
 int drawable tooltip_frame_dark 0x7f0700ac
 int drawable tooltip_frame_light 0x7f0700ad
@@ -1911,6 +1913,7 @@ int id invisible 0x7f0800c5
 int id inward 0x7f0800c6
 int id italic 0x7f0800c7
 int id item_touch_helper_previous_elevation 0x7f0800c8
+int id jiang 0x7f0801b0
 int id jumpToEnd 0x7f0800c9
 int id jumpToStart 0x7f0800ca
 int id labelGroup 0x7f0800cb
@@ -2000,6 +2003,7 @@ int id on 0x7f08011e
 int id outline 0x7f08011f
 int id outward 0x7f080120
 int id packed 0x7f080121
+int id paixu 0x7f0801b1
 int id parallax 0x7f080122
 int id parent 0x7f080123
 int id parentPanel 0x7f080124
@@ -2050,6 +2054,7 @@ int id search_voice_btn 0x7f080150
 int id select_dialog_listview 0x7f080151
 int id selected 0x7f080152
 int id selection_type 0x7f080153
+int id sheng 0x7f0801b2
 int id shortcut 0x7f080154
 int id showCustom 0x7f080155
 int id showHome 0x7f080156

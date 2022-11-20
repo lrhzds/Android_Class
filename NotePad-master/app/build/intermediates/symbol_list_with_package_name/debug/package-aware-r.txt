@@ -1707,6 +1707,8 @@ drawable ripple
 drawable search
 drawable search4
 drawable setting
+drawable sort
+drawable sort1
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1912,6 +1914,7 @@ id invisible
 id inward
 id italic
 id item_touch_helper_previous_elevation
+id jiang
 id jumpToEnd
 id jumpToStart
 id labelGroup
@@ -2001,6 +2004,7 @@ id on
 id outline
 id outward
 id packed
+id paixu
 id parallax
 id parent
 id parentPanel
@@ -2051,6 +2055,7 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id sheng
 id shortcut
 id showCustom
 id showHome

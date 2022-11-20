@@ -8,6 +8,21 @@
         android:showAsAction="always"
         android:title="111"
         tools:ignore="AppCompatResource" />
+    <item
+        android:id="@+id/paixu"
+        android:icon="@drawable/sort1"
+        android:showAsAction="always"
+        android:title="111"
+        tools:ignore="AppCompatResource" >
+        <menu>
+            <item
+                android:id="@+id/sheng"
+                android:title="升序排序"/>
+            <item
+                android:id="@+id/jiang"
+                android:title="降序排序"/>
+        </menu>
+    </item>
     <!--  This is our one standard application action (creating a new note). -->
 
 

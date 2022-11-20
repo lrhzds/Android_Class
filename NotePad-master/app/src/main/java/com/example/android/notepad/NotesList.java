@@ -543,8 +543,35 @@ public class NotesList extends ListActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Cursor cursor;
+        SimpleCursorAdapter adapter = null;
         switch (item.getItemId()) {
-
+            case R.id.sheng:
+                cursor = managedQuery(
+                        getIntent().getData(),            // Use the default content URI for the provider.
+                        PROJECTION,                       // Return the note ID and title for each note.
+                        null,
+                        null,// No where clause, therefore no where column values.
+                        NotePad.Notes.NEW_SORT_ORDER  // Use the default sort order.
+                );
+                adapter = null;
+                adapter = x(cursor);
+                // Sets the ListView's adapter to be the cursor adapter that was just created.
+                setListAdapter(adapter);
+                return true;
+            case R.id.jiang:
+                cursor = managedQuery(
+                        getIntent().getData(),            // Use the default content URI for the provider.
+                        PROJECTION,                       // Return the note ID and title for each note.
+                        null,
+                        null,// No where clause, therefore no where column values.
+                        NotePad.Notes.DEFAULT_SORT_ORDER  // Use the default sort order.
+                );
+                adapter = null;
+                adapter = x(cursor);
+                // Sets the ListView's adapter to be the cursor adapter that was just created.
+                setListAdapter(adapter);
+                return true;
             case android.R.id.home:   //返回键的id
 
                 return false;
