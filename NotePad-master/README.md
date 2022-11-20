@@ -18,7 +18,7 @@ dependencies{
 - [排序](#排序)
 - [UI美化](#UI美化)
     - [悬浮按钮](#FloatingActionButton(悬浮按钮))
-    - [主题](#主题)
+    - [主题设置](#主题设置)
     - [其他](#其他)
 - [保存图片](#保存图片)
 
@@ -217,7 +217,7 @@ public boolean setViewValue(View view,Cursor cursor,int i){
 
 - 最后一行是用来设置样式的
 
-### 主题
+### 主题设置
 
 > 我这里以共设置了两个主题样式，分别为黑白主题和浅色主题，通过`SharedPreferences`的形式存储
 
