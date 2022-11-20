@@ -5,6 +5,30 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopLeft">50%</item>
         <item name="cornerSizeTopRight">50%</item>
+
+    </style>
+    <!-- tip图片 -->
+    <style name="tipImageStyle">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">50%</item>
+
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">50%</item>
+
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerSizeTopRight">50%</item>
+
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerSizeBottomRight">50%</item>
+    </style>
+
+
+    <!-- 叶子图片 -->
+    <style name="leafImageStyle">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopLeft">50%</item>
+        <item name="cornerSizeBottomRight">50%</item>
     </style>
 
     <style name="ShapeMediumCut" parent="ShapeAppearance.MaterialComponents.MediumComponent">

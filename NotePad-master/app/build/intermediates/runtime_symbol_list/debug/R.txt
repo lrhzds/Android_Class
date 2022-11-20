@@ -940,6 +940,7 @@ int bool abc_config_actionMenuItemAllCaps 0x7f040002
 int bool mtrl_btn_textappearance_all_caps 0x7f040003
 int color AliceBlue 0x7f050000
 int color DeepSkyBlue 0x7f050001
+int color Normal 0x7f0500d4
 int color abc_background_cache_hint_selector_material_dark 0x7f050002
 int color abc_background_cache_hint_selector_material_light 0x7f050003
 int color abc_btn_colored_borderless_text_material 0x7f050004
@@ -1687,6 +1688,7 @@ int drawable mtrl_popupmenu_background_dark 0x7f070095
 int drawable mtrl_tabs_default_indicator 0x7f070096
 int drawable navigation_empty_icon 0x7f070097
 int drawable note 0x7f070098
+int drawable notebook 0x7f0700ad
 int drawable notification_action_background 0x7f070099
 int drawable notification_bg 0x7f07009a
 int drawable notification_bg_low 0x7f07009b
@@ -1862,6 +1864,7 @@ int id easeIn 0x7f080097
 int id easeInOut 0x7f080098
 int id easeOut 0x7f080099
 int id edit_query 0x7f08009a
+int id edit_title 0x7f0801b2
 int id elastic 0x7f08009b
 int id end 0x7f08009c
 int id endToStart 0x7f08009d
@@ -1945,7 +1948,6 @@ int id material_value_index 0x7f0800ea
 int id menu_delete 0x7f0800ec
 int id menu_paste 0x7f0800ed
 int id menu_picture 0x7f0800ee
-int id menu_revert 0x7f0800ef
 int id menu_save 0x7f0800f0
 int id menu_search 0x7f0800f1
 int id message 0x7f0800f2
@@ -2135,7 +2137,6 @@ int id withText 0x7f0801a9
 int id withinBounds 0x7f0801aa
 int id wrap 0x7f0801ab
 int id wrap_content 0x7f0801ac
-int id xxx 0x7f0801ad
 int id zero_corner_chip 0x7f0801ae
 int integer abc_config_activityDefaultDur 0x7f090000
 int integer abc_config_activityShortDur 0x7f090001
@@ -3128,6 +3129,8 @@ int style Widget_MaterialComponents_Toolbar_PrimarySurface 0x7f0f02c9
 int style Widget_MaterialComponents_Toolbar_Surface 0x7f0f02ca
 int style Widget_MaterialComponents_Tooltip 0x7f0f02cb
 int style Widget_Support_CoordinatorLayout 0x7f0f02cc
+int style leafImageStyle 0x7f0f02cd
+int style tipImageStyle 0x7f0f02ce
 int[] styleable ActionBar { 0x7f03003a, 0x7f030041, 0x7f030042, 0x7f0300d4, 0x7f0300d5, 0x7f0300d6, 0x7f0300d7, 0x7f0300d8, 0x7f0300d9, 0x7f0300ff, 0x7f03010f, 0x7f030110, 0x7f030128, 0x7f03017b, 0x7f030182, 0x7f030188, 0x7f030189, 0x7f03018c, 0x7f030197, 0x7f0301a9, 0x7f030216, 0x7f030257, 0x7f030282, 0x7f030289, 0x7f03028a, 0x7f0302d7, 0x7f0302da, 0x7f030334, 0x7f03033e }
 int styleable ActionBar_background 0
 int styleable ActionBar_backgroundSplit 1

@@ -60,6 +60,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -309,6 +310,19 @@ public class NoteEditor extends Activity {
             mOriginalContent = savedInstanceState.getString(ORIGINAL_CONTENT);
         }
 
+        View x = findViewById(R.id.edit_title);
+
+        x.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(null, mUri);
+                intent1.addCategory(Intent.CATEGORY_ALTERNATIVE);
+                startActivity(intent1);
+            }
+        });
+        Intent intent1 = new Intent(null, mUri);
+        intent1.addCategory(Intent.CATEGORY_ALTERNATIVE);
+
 
     }
 
@@ -367,7 +381,7 @@ public class NoteEditor extends Activity {
             int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
             note = mCursor.getString(colNoteIndex);
 //            mText.setTextKeepState(note);
-            System.out.println("note=" + note);
+
             initContent();
 //            mText.setText(Html.fromHtml(note,imageGetter,null));
 
@@ -446,7 +460,6 @@ public class NoteEditor extends Activity {
                  */
             } else if (mState == STATE_EDIT) {
                 // Creates a map to contain the new values for the columns
-
                 updateNote(text, null);
             } else if (mState == STATE_INSERT) {
                 updateNote(text, text);
@@ -471,18 +484,6 @@ public class NoteEditor extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.editor_options_menu, menu);
 
-        // Only add extra menu items for a saved note 
-        if (mState == STATE_EDIT) {
-            // Append to the
-            // menu items for any other activities that can do stuff with it
-            // as well.  This does a query on the system for any activities that
-            // implement the ALTERNATIVE_ACTION for our data, adding a menu item
-            // for each one that is found.
-            Intent intent = new Intent(null, mUri);
-            intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
-            menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0,
-                    new ComponentName(this, NoteEditor.class), null, intent, 0, null);
-        }
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -493,11 +494,11 @@ public class NoteEditor extends Activity {
         int colNoteIndex = mCursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_NOTE);
         String savedNote = mCursor.getString(colNoteIndex);
         String currentNote = mText.getText().toString();
-        if (savedNote.equals(currentNote)) {
-            menu.findItem(R.id.menu_revert).setVisible(false);
-        } else {
-            menu.findItem(R.id.menu_revert).setVisible(true);
-        }
+//        if (savedNote.equals(currentNote)) {
+//            menu.findItem(R.id.menu_revert).setVisible(false);
+//        } else {
+//            menu.findItem(R.id.menu_revert).setVisible(true);
+//        }
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -516,7 +517,7 @@ public class NoteEditor extends Activity {
         switch (item.getItemId()) {
             case R.id.menu_save:
                 String text = mText.getText().toString();
-                System.out.println(text);
+
                 updateNote(text, null);
                 finish();
                 break;
@@ -554,9 +555,9 @@ public class NoteEditor extends Activity {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 break;
-            case R.id.menu_revert:
-                cancelNote();
-                break;
+//            case R.id.menu_revert:
+//                cancelNote();
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -585,7 +586,7 @@ public class NoteEditor extends Activity {
     private void initContent() {
         //input是获取将被解析的字符串
         String input = note;
-        System.out.println("------" + input);
+
         //将图片那一串字符串解析出来,即<img src=="xxx" />
         Pattern p = Pattern.compile("\\<img src=\".*?\"\\/>");
         Matcher m = p.matcher(input);
@@ -628,24 +629,9 @@ public class NoteEditor extends Activity {
             try {
                 // 获得图片的uri
                 Uri originalUri = data.getData();
-//                System.out.println(originalUri);
-//
-//                bm = MediaStore.Images.Media.getBitmap(resolver,originalUri);
-//                String[] proj = {MediaStore.Images.Media.DATA};
-//                System.out.println(proj[0]+"111111111");
-//                // 好像是android多媒体数据库的封装接口，具体的看Android文档
-//                Cursor cursor = managedQuery(originalUri,proj,null,null,null);
-//                // 按我个人理解 这个是获得用户选择的图片的索引值
-//                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//                System.out.println(column_index+"========");
-//                // 将光标移至开头 ，这个很重要，不小心很容易引起越界
-//                cursor.moveToFirst();
-//                // 最后根据索引值获取图片路径
-//                String path = cursor.getString(column_index);
 
-                System.out.println("=======" + originalUri);
+
                 path = getPathByUri4kitkat(NoteEditor.this, originalUri);
-                System.out.println();
 
                 insertImg(path);
                 Toast.makeText(NoteEditor.this, path, Toast.LENGTH_SHORT).show();
@@ -756,12 +742,11 @@ public class NoteEditor extends Activity {
     //region 插入图片
     private void insertImg(String path) {
         String tagPath = "<img src=\"" + path + "\"/>";//为图片路径加上<img>标签
-        System.out.println("路劲：" + path);
         Bitmap bitmap = BitmapFactory.decodeFile(path);
 
         if (bitmap != null) {
             SpannableString ss = getBitmapMime(path, tagPath);
-            System.out.println("ss=" + ss);
+
             insertPhotoToEditText(ss);
             mText.append("\n");
             Log.d("YYPT", mText.getText().toString());
@@ -776,11 +761,11 @@ public class NoteEditor extends Activity {
         et.insert(start, ss);
         mText.setText(et);
 
-        System.out.println(mText.getText());
+
         mText.setSelection(start + ss.length());
         mText.setFocusableInTouchMode(true);
         mText.setFocusable(true);
-//        System.out.println("ppp");
+
 
         updateNote(mText.getText().toString(), getTitle().toString());
 

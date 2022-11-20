@@ -941,6 +941,7 @@ bool abc_config_actionMenuItemAllCaps
 bool mtrl_btn_textappearance_all_caps
 color AliceBlue
 color DeepSkyBlue
+color Normal
 color abc_background_cache_hint_selector_material_dark
 color abc_background_cache_hint_selector_material_light
 color abc_btn_colored_borderless_text_material
@@ -1688,6 +1689,7 @@ drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
 drawable note
+drawable notebook
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1863,6 +1865,7 @@ id easeIn
 id easeInOut
 id easeOut
 id edit_query
+id edit_title
 id elastic
 id end
 id endToStart
@@ -1946,7 +1949,6 @@ id material_value_index
 id menu_delete
 id menu_paste
 id menu_picture
-id menu_revert
 id menu_save
 id menu_search
 id message
@@ -2136,7 +2138,6 @@ id withText
 id withinBounds
 id wrap
 id wrap_content
-id xxx
 id zero_corner_chip
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
@@ -3129,6 +3130,8 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
+style leafImageStyle
+style tipImageStyle
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth

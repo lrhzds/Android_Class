@@ -40,10 +40,6 @@
         "source": "C:\\Users\\linruihang\\.gradle\\daemon\\7.3.3\\com.example.android.notepad.app-main-18:\\layout\\child_item.xml"
     },
     {
-        "merged": "com.example.android.notepad.app-merged_res-16:/menu_list_options_menu.xml.flat",
-        "source": "com.example.android.notepad.app-main-18:/menu/list_options_menu.xml"
-    },
-    {
         "merged": "C:\\Users\\linruihang\\.gradle\\daemon\\7.3.3\\com.example.android.notepad.app-merged_res-16:\\menu_editor_options_menu.xml.flat",
         "source": "C:\\Users\\linruihang\\.gradle\\daemon\\7.3.3\\com.example.android.notepad.app-main-18:\\menu\\editor_options_menu.xml"
     },
@@ -70,6 +66,10 @@
     {
         "merged": "C:\\Users\\linruihang\\.gradle\\daemon\\7.3.3\\com.example.android.notepad.app-merged_res-16:\\drawable-hdpi_setting.png.flat",
         "source": "C:\\Users\\linruihang\\.gradle\\daemon\\7.3.3\\com.example.android.notepad.app-main-18:\\drawable-hdpi\\setting.png"
+    },
+    {
+        "merged": "com.example.android.notepad.app-merged_res-16:/drawable-ldpi_notebook.png.flat",
+        "source": "com.example.android.notepad.app-main-18:/drawable-ldpi/notebook.png"
     },
     {
         "merged": "C:\\Users\\linruihang\\.gradle\\daemon\\7.3.3\\com.example.android.notepad.app-merged_res-16:\\layout_main.xml.flat",

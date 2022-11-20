@@ -37,7 +37,7 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="false"
-        android:icon="@drawable/app_notes"
+        android:icon="@drawable/notebook"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:testOnly="true" >

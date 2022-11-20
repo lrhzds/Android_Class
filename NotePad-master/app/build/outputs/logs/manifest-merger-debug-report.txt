@@ -76,7 +76,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\li
 	android:label
 		ADDED from D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:32:9-41
 	android:icon
-		ADDED from D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:31:9-43
+		ADDED from D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:31:9-42
 provider#com.example.android.notepad.NotePadProvider
 ADDED from D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:35:9-40:20
 	android:authorities
