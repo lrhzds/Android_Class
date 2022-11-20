@@ -41,7 +41,7 @@ adapter.setViewBinder(viewBinder);
 
 - 效果图：
 
-<img src="picture\query1.png" width="250px"/><img src="picture\query.png" width="250px"/>
+<img src="picture\query1.png" width="250px"/>     <img src="picture\query.png" width="250px"/>
 
 - 分析：
   - 在`ActionBar`上面先放了一个放大镜的图标，使用`setOnQueryTextListener`设置文本监听。重写`onQueryTextChange`，这个的效果是一旦输入内容就会执行里面的内容，而不需要点击确认才开始执行。
@@ -97,9 +97,18 @@ adapter.setViewBinder(viewBinder);
 
 > 我这里以共设置了两个主题样式，分别为黑白主题和浅色主题，通过`SharedPreferences`的形式存储
 
+- 每次restart和create时，都会先调出`sharepreference`里面的内容，不会随着关闭或退出而变会原样
+
+#### 蓝白主题
+
+<img src="picture\white1.png" width="250px"/>     <img src="picture\white2.png" width="250px"/>
+
 #### 黑白主题
 
+<img src="picture\black1.png" width="250px"/>     <img src="picture\black2.png" width="250px"/>
 
 
-#### 浅色主题
 
+- 我在xml里面给主界面套了一个侧拉菜单,可以通过侧拉和点击下面我设置的`FloatingActionButton`让其出现
+
+<img src="picture\right_side.png" width="250px"/>
