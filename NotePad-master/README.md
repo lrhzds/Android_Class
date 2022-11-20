@@ -131,6 +131,8 @@ adapter.setViewBinder(viewBinder);
 
 <img src="picture\button.png" width="250px"/>
 
+必须要声明`theme="@style/Theme.MaterialComponents.Light.NoActionBar"`，不然会报错
+
 ```xml
 <com.google.android.material.button.MaterialButton
     android:id="@+id/edit_title"
@@ -183,6 +185,105 @@ adapter.setViewBinder(viewBinder);
   - 然后我用到了`ExpandableListView`，这个主要是用来做侧拉菜单中的二级菜单的，普通的`ListView`很难搞出二级菜单
 
 <img src="picture\right_side.png" width="250px"/>
+
+- 这是侧拉菜单的xml文件，先在外面套一个`androidx.drawerlayout.widget.DrawerLayout`，然后在其里面添加两个布局，第一个布局表示的是主页面，第二个布局放的是侧拉菜单的页面，主页面里面的ListView必须设id为list，不然在activity里面设置setContentView时会显示不出来。
+
+```xml
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <RelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="16dp"
+                android:elevation="0dp"
+                android:src="@drawable/setting"
+                android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+                app:borderWidth="0dp"
+                app:tint="@null" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="8dp"
+                android:src="@drawable/add"
+                android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+                android:tint="@color/white"
+                app:borderWidth="0dp"
+                app:tint="@null" />
+
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:defaultFocusHighlightEnabled="false"></ListView>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <!--    侧拉菜单-->
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/time_text"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/head" />
+            </LinearLayout>
+
+            <ExpandableListView
+                android:id="@+id/expand_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indicatorLeft="0dp"
+                android:indicatorRight="40dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
+```
 
 - 这是主题转换的部分代码
 
@@ -395,7 +496,7 @@ adapter.setViewBinder(viewBinder);
 
 - 这个方法将存入到数据库中的字符串进行解析，并通过图片的地址在edittext上面展示图片
 
-  ```
+  ```java
   private void initContent() {
       //input是获取将被解析的字符串
       String input = note;
@@ -423,3 +524,8 @@ adapter.setViewBinder(viewBinder);
       updateNote(mText.getText().toString(), getTitle().toString());
   }
   ```
+
+
+
+
+
