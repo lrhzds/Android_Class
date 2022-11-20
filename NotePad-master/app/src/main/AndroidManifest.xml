@@ -130,7 +130,6 @@
         <activity
             android:name="NotesLiveFolder"
             android:exported="true"
-            android:icon="@drawable/live_folder_notes"
             android:label="@string/live_folder_name">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />

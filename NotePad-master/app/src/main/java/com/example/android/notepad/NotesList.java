@@ -167,6 +167,7 @@ public class NotesList extends ListActivity {
 //        StatusBarUtils.setWindowStatusBarColor(NotesList.this, dc);
 
         ActionBar actionBar = getActionBar();
+
         Drawable dr = this.getResources().getDrawable(dc);
         actionBar.setBackgroundDrawable(dr);
         /* If no data is given in the Intent that started this Activity, then this Activity
