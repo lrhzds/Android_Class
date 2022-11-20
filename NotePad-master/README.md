@@ -322,7 +322,7 @@ public boolean onChildClick(ExpandableListView expandableListView,View view,int 
 
 - 简单加了个字体的设置，同样使用`sharedpreference`进行保存,设置了三个字体大小
 
-<img src="picture\size1.png" width="200px"/><img src="picture\size2.png" width="200px"/><img src="picture\size3.png" width="200px"/><img src="picture\size4.png" width="200px"/>
+<img src="picture\size1.png" width="200px"/>     <img src="picture\size2.png" width="200px"/>     <img src="picture\size3.png" width="200px"/>     <img src="picture\size4.png" width="200px"/>
 
 ## 保存图片
 
