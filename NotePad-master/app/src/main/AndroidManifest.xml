@@ -34,7 +34,7 @@
         android:requestLegacyExternalStorage="true">
 
         <provider
-            android:name="NotePadProvider"
+            android:name="com.example.android.notepad.NotePadProvider"
             android:authorities="com.google.provider.NotePad"
             android:exported="false">
             <grant-uri-permission android:pathPattern=".*" />
@@ -43,7 +43,7 @@
 
 
         <activity
-            android:name="NotesList"
+            android:name="com.example.android.notepad.NotesList"
             android:exported="true"
             android:label="@string/title_notes_list">
             <intent-filter>
@@ -68,7 +68,7 @@
         </activity>
 
         <activity
-            android:name="NoteEditor"
+            android:name="com.example.android.notepad.NoteEditor"
 
             android:configChanges="keyboardHidden|orientation"
             android:exported="true"
@@ -102,7 +102,7 @@
         </activity>
 
         <activity
-            android:name="TitleEditor"
+            android:name="com.example.android.notepad.TitleEditor"
             android:exported="true"
             android:icon="@drawable/ic_menu_edit"
             android:label="@string/title_edit_title"
@@ -131,7 +131,7 @@
         </activity>
 
         <activity
-            android:name="NotesLiveFolder"
+            android:name="com.example.android.notepad.NotesLiveFolder"
             android:exported="true"
             android:label="@string/live_folder_name">
             <intent-filter>

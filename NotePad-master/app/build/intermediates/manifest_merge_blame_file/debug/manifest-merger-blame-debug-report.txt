@@ -57,7 +57,7 @@
 44        <provider
 44-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:36:9-41:20
 45            android:name="com.example.android.notepad.NotePadProvider"
-45-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:37:13-43
+45-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:37:13-71
 46            android:authorities="com.google.provider.NotePad"
 46-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:38:13-62
 47            android:exported="false" >
@@ -70,7 +70,7 @@
 51        <activity
 51-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:45:9-68:20
 52            android:name="com.example.android.notepad.NotesList"
-52-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:46:13-37
+52-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:46:13-65
 53            android:exported="true"
 53-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:47:13-36
 54            android:label="@string/title_notes_list" >
@@ -124,7 +124,7 @@
 77        <activity
 77-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:70:9-102:20
 78            android:name="com.example.android.notepad.NoteEditor"
-78-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:71:13-38
+78-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:71:13-66
 79            android:configChanges="keyboardHidden|orientation"
 79-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:73:13-63
 80            android:exported="true"
@@ -188,7 +188,7 @@
 114        <activity
 114-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:104:9-131:20
 115            android:name="com.example.android.notepad.TitleEditor"
-115-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:105:13-39
+115-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:105:13-67
 116            android:exported="true"
 116-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:106:13-36
 117            android:icon="@drawable/ic_menu_edit"
@@ -245,7 +245,7 @@
 152        <activity
 152-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:133:9-141:20
 153            android:name="com.example.android.notepad.NotesLiveFolder"
-153-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:134:13-43
+153-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:134:13-71
 154            android:exported="true"
 154-->D:\AndroidProject\android\NotePad-master\app\src\main\AndroidManifest.xml:135:13-36
 155            android:label="@string/live_folder_name" >

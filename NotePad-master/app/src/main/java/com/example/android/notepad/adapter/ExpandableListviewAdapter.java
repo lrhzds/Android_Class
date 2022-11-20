@@ -8,8 +8,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-
 import com.example.android.notepad.R;
 
 /**
