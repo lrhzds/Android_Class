@@ -374,6 +374,38 @@ public boolean onChildClick(ExpandableListView expandableListView,View view,int 
 
 <img src="picture\size1.png" width="200px"/>     <img src="picture\size2.png" width="200px"/>     <img src="picture\size3.png" width="200px"/>     <img src="picture\size4.png" width="200px"/>
 
+- 点击事件
+
+```java
+SharedPreferences.Editor edit = getSharedPreferences("bgColor", MODE_PRIVATE).edit();
+// Handle all of the possible menu actions.
+switch (item.getItemId()) {
+    case R.id.big:
+        edit.putInt("size",30);
+        edit.apply();
+        mText.setTextSize(30);
+        break;
+    case R.id.normal:
+        edit.putInt("size",22);
+        edit.apply();
+        mText.setTextSize(22);
+        break;
+    case R.id.small:
+        edit.putInt("size",15);
+        edit.apply();
+        mText.setTextSize(15);
+        break;
+```
+
+- 在onResume里面再加入如下代码，就可以实现再次打开时和自己选择的字体大小一致
+
+```java
+SharedPreferences pref = getSharedPreferences("bgColor", MODE_PRIVATE);
+int size = pref.getInt("size", 0);
+System.out.println(size);
+mText.setTextSize(size);
+```
+
 ## 保存图片
 
 <img src="picture\pic1.png" width="250px"/>
