@@ -22,6 +22,7 @@ import com.example.android.notepad.adapter.ExpandableListviewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -34,6 +35,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -68,6 +70,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -204,7 +208,10 @@ public class NotesList extends ListActivity {
         adapter = x(cursor);
         // Sets the ListView's adapter to be the cursor adapter that was just created.
         setListAdapter(adapter);
+
+
     }
+
 
     private void initView() {
         expand_list_id = findViewById(R.id.expand_list);
@@ -560,6 +567,7 @@ public class NotesList extends ListActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
             case android.R.id.home:   //返回键的id
 
                 return false;

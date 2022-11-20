@@ -4,7 +4,7 @@
 
 - 依赖库
 
-```xml
+```java
 dependencies{
         implementation fileTree(dir:'libs',includes:['*.jar'])
         implementation'com.google.android.material:material:1.3.0'
@@ -105,6 +105,30 @@ public boolean setViewValue(View view,Cursor cursor,int i){
 
 ## UI美化
 
+### listItem样式
+
+<img src="picture\item.png" width="250px"/>
+
+- 背景颜色如下，就可以实现带圆角的背景
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--中间的白色实心背景-->
+    <solid android:color="#FFFFFF" />
+    <!--灰色边框，色值和宽度-->
+    <stroke
+        android:width="0dp"
+        android:color="#999999" />
+    <!--圆角角度：左下和右下-->
+    <corners
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp" />
+</shape>
+```
+
 ### FloatingActionButton(悬浮按钮)
 
 - 我给这两个按钮分别设置了打开侧拉菜单和创建新笔记的功能
@@ -116,7 +140,6 @@ public boolean setViewValue(View view,Cursor cursor,int i){
 <img src="picture\query1.png" width="250px"/>
 
 ```xml
-
 <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fab"
     android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:layout_alignParentRight="true" android:layout_alignParentBottom="true"
@@ -134,7 +157,6 @@ public boolean setViewValue(View view,Cursor cursor,int i){
 必须要声明`theme="@style/Theme.MaterialComponents.Light.NoActionBar"`，不然会报错
 
 ```xml
-
 <com.google.android.material.button.MaterialButton android:id="@+id/edit_title"
     android:layout_width="150dp" android:layout_height="50dp" android:layout_alignParentRight="true"
     android:layout_alignParentBottom="true" android:layout_marginStart="16dp"
@@ -180,7 +202,6 @@ public boolean setViewValue(View view,Cursor cursor,int i){
   ，然后在其里面添加两个布局，第一个布局表示的是主页面，第二个布局放的是侧拉菜单的页面，主页面里面的ListView必须设id为list，不然在activity里面设置setContentView时会显示不出来。
 
 ```xml
-
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

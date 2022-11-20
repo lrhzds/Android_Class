@@ -192,6 +192,9 @@ public class NoteEditor extends Activity {
     private static int dc;
     SharedPreferences.Editor editor;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,6 +204,7 @@ public class NoteEditor extends Activity {
 
         // Gets a handle to the EditText in the the layout.
         mText = findViewById(R.id.note);
+
 
 //        RelativeLayout textBgColor = findViewById(R.id.open_menu);
         SharedPreferences pref = getSharedPreferences("bgColor", MODE_PRIVATE);
